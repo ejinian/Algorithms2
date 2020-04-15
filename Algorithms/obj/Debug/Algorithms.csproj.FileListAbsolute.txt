@@ -1,0 +1,6 @@
+E:\ProgrammingProjects\Algorithms\Algorithms\bin\Debug\Algorithms.exe.config
+E:\ProgrammingProjects\Algorithms\Algorithms\bin\Debug\Algorithms.exe
+E:\ProgrammingProjects\Algorithms\Algorithms\bin\Debug\Algorithms.pdb
+E:\ProgrammingProjects\Algorithms\Algorithms\obj\Debug\Algorithms.csprojResolveAssemblyReference.cache
+E:\ProgrammingProjects\Algorithms\Algorithms\obj\Debug\Algorithms.exe
+E:\ProgrammingProjects\Algorithms\Algorithms\obj\Debug\Algorithms.pdb
