@@ -8,75 +8,170 @@ namespace Algorithms
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             int[] numbers = new int[] { 2, 1, 16, 4, 8 };
             Searcher mySearcher = new Searcher();
 
             //int myResult = mySearcher.Find(numbers, 10);
             //int largestNumber = mySearcher.LargestNumberFinder(numbers);
-
             //int secondLargestNumber = mySearcher.SecondLargestNumberFinder(numbers);
-
-            /*
-            int[] nums = new int[] { 2, 11, 14, 17 };
-            int target = 16;
-            
-            LeetCodeProgram1 myClass = new LeetCodeProgram1();
-            int [] result = myClass.TwoSum(nums, target);
-            result.ToList().ForEach(i => Console.WriteLine(i.ToString()));
-            Console.ReadLine();
-            */
-
-            int x = 2147483647;
-
-            LeetCodeProgram2 myClass2 = new LeetCodeProgram2();
-            int reversed = myClass2.Reverse(x);
-
-            Console.WriteLine(reversed);
+            //Console.WriteLine(ReverseString("Arthur"));
+            //Console.WriteLine(RemoveAllSpaces("We will remove all spaces from this sentence"));
+            //Console.WriteLine(SubstringMaker("Arthur", 1, 10));
+            //Console.WriteLine(HammingDistanceCalculator("karolin", "kathrin"));
+            //Console.WriteLine(PalindromeChecker("race car"));
+            //Console.WriteLine(FibonacciDistance(5));
+            //int[] arrayParams = new int[] { 1, 2, 3, 4, 5 };
+            //Console.WriteLine(ArrayIndexIdentifier(arrayParams, 1));
+            //int[] result = ArraySorter(new int[] { 0, 3, 4, 6, 2, 9, 7, 13, 15 });
+            //Console.WriteLine(ArraySorter(new int[] {0, 3, 4, 6, 2, 9, 7, 13, 15}));
+            //Console.WriteLine(DelimiterChecker(("[[[]]")));
+            //int[] toSearch = new int[] {0, 1, 9, 3, 4, 7};
+            //Console.WriteLine(RomanToInt(("III")));
+            Console.WriteLine();
             Console.ReadLine();
         }
-    }
-}
-
-class LeetCodeProgram1
-{
-    public int[] TwoSum(int[] nums, int target)
-    {
-        for (int i = 0; i < nums.Length; i++)
+        public static string ReverseString(string s)
         {
-            for (int j = i + 1; j < nums.Length; j++)
+            string result = "";
+            for (int i = s.Length - 1; i >= 0; i--)
             {
-                if (nums[i] + nums[j] == target)
+                result = result + s[i];
+            }
+            return result;
+        }
+
+        public static string RemoveAllSpaces(string s)
+        {
+            string cleaned = "";
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i].ToString() != " ")
                 {
-                    return new int[] { i, j };
+                    cleaned = cleaned + s[i];
                 }
             }
+            return cleaned;
         }
-        return new int[] { -1 };
-    }
-}
 
-class LeetCodeProgram2
-{
-    public int Reverse(int x)
-    {
-        int changeNumber;
-        int reversed = 0;
-        if (x > 2147483647)
+        public static string SubstringMaker(string s, int StartIndex, int Length)
         {
-            return 0;
+            string substringed = "";
+            if (StartIndex + Length > s.Length)
+            {
+                return "error";
+            }
+            for (int i = StartIndex; i <= StartIndex + Length; i++)
+            {
+                substringed = substringed + s[i];
+            }
+            return substringed;
         }
-        while (x != 0)
+
+        public static int HammingDistanceCalculator(string word1, string word2)
         {
-            changeNumber = x % 10;
-            reversed = reversed * 10 + changeNumber;
-            x = x / 10;
+            if (word1.Length != word2.Length)
+            {
+                return -1;
+            }
+            int hammingValue = 0;
+            for (int i = 0; i < word1.Length; i++)
+            {
+                if (word1[i] != word2[i])
+                {
+                    hammingValue++;
+                }
+            }
+            return hammingValue;
         }
-        if (reversed < 0)
+
+        public static bool PalindromeChecker(string s)
         {
-            return 0;
+            string reversed = ReverseString(s);
+            string cleaned = RemoveAllSpaces(s);
+            string reversedAndCleaned = RemoveAllSpaces(reversed);
+            int hammingDistanceForReversedAndCleaned = HammingDistanceCalculator(cleaned, reversedAndCleaned);
+            return hammingDistanceForReversedAndCleaned == 0;
         }
-        return reversed;
+
+        public static int FibonacciDistance(int distance)
+        {
+            if (distance < 2)
+            {
+                return 1;
+            }
+            return FibonacciDistance(distance - 1) + FibonacciDistance(distance - 2);
+        }
+
+        public static int ArrayIndexIdentifier(int[] array, int number)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] == number)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        public static int[] ArraySorter(int[] arr)
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                for (int j = 0; j < arr.Length; j++)
+                {
+                    if (arr[i] < arr[j])
+                    {
+                        int temp = arr[i];
+                        arr[i] = arr[j];
+                        arr[j] = temp;
+                    }
+                }
+            }
+            return arr;
+        }
+
+        public static bool DelimiterChecker(string brackets)
+        {
+            int ifIsZero = 0;
+            for (int i = 0; i < brackets.Length; i++)
+            {
+                if (brackets[i].ToString() == "[")
+                {
+                    ifIsZero++;
+                }
+                else if (brackets[i].ToString() == "]")
+                {
+                    ifIsZero--;
+                }
+            }
+            return ifIsZero == 0;
+        }
+
+        public static int RomanToInt(string s)
+        {
+            Dictionary<string, int> romanToDecimalDict = new Dictionary<string, int>();
+            romanToDecimalDict.Add("I", 1);
+            romanToDecimalDict.Add("II", 2);
+            romanToDecimalDict.Add("III", 3);
+            romanToDecimalDict.Add("IV", 4);
+            romanToDecimalDict.Add("V", 5);
+            romanToDecimalDict.Add("X", 10);
+            romanToDecimalDict.Add("L", 50);
+            romanToDecimalDict.Add("C", 100);
+            romanToDecimalDict.Add("D", 500);
+            romanToDecimalDict.Add("M", 1000);
+            int value = 0;
+            if (romanToDecimalDict.TryGetValue("I", out value))
+            {
+                if (value.ToString() == s)
+                {
+                    return value;
+                }
+            }
+            return value;
+        }
     }
 }
